@@ -1,0 +1,17 @@
+#ubicacion {
+  padding: 7rem 4rem; background: var(--bg-alt);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+}
+.addr-item { display: flex; gap: 1.3rem; margin-bottom: 1.8rem; align-items: flex-start; }
+.addr-icon { font-size: 1.1rem; margin-top: .1rem; flex-shrink: 0; color: var(--maroon); }
+.addr-text strong {
+  display: block; font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--maroon); margin-bottom: .3rem; font-weight: 400;
+}
+.addr-text p { font-size: .88rem; font-weight: 300; color: var(--text-b); line-height: 1.7; }
+.map-box { aspect-ratio: 1; overflow: hidden; border: 1px solid var(--border); }
+.map-box iframe { width: 100%; height: 100%; border: none; filter: sepia(20%) contrast(1.05); }
+
+@media (max-width: 900px) {
+  #ubicacion { grid-template-columns: 1fr; padding: 5rem 2rem; }
+}

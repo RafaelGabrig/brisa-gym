@@ -1,0 +1,31 @@
+#sobre {
+  padding: 7rem 4rem;
+  background: #EAE0D3;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+}
+.sobre-visual-wrap { display: flex; flex-direction: column; gap: 0; }
+.sobre-visual {
+  aspect-ratio: 3/4; position: relative; overflow: hidden;
+  background: var(--bg-alt);
+}
+.sobre-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.sobre-quote {
+  background: #EAE0D3; padding: 2rem; border-top: 2px solid var(--taupe);
+  position: relative;
+}
+.sobre-quote::before {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif; font-size: 5rem;
+  color: var(--taupe); line-height: 0;
+  position: absolute; top: 2.2rem; left: 1.5rem; opacity: .5;
+}
+.sobre-quote p {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 300;
+  line-height: 1.65; color: var(--text-h); font-style: italic; padding-left: 1.8rem;
+}
+.sobre-quote p strong { font-style: normal; font-weight: 500; color: var(--maroon); }
+
+@media (max-width: 900px) {
+  #sobre { grid-template-columns: 1fr; padding: 5rem 2rem; }
+  .sobre-visual { display: none; }
+}

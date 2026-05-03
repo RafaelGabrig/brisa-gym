@@ -1,0 +1,24 @@
+footer {
+  background: var(--taupe-xdark);
+  padding: 2.4rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.ft-logo-link { display: flex; align-items: center; text-decoration: none; line-height: 0; }
+.ft-logo-img {
+  height: 52px; width: auto;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse 82% 82% at 50% 50%, black 55%, transparent 85%);
+  mask-image: radial-gradient(ellipse 82% 82% at 50% 50%, black 55%, transparent 85%);
+  filter: contrast(1.02);
+}
+.ft-info { font-size: .68rem; font-weight: 300; color: rgba(239,233,213,.55); letter-spacing: .07em; text-align: center; }
+.ft-social { display: flex; gap: 1.5rem; }
+.ft-social a {
+  font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(239,233,213,.5); text-decoration: none; transition: color .3s;
+}
+.ft-social a:hover { color: var(--cream); }
+
+@media (max-width: 900px) {
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
+}
