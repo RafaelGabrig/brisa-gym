@@ -7,7 +7,6 @@ import Features from './components/Features.jsx'
 import Ubicacion from './components/Ubicacion.jsx'
 import Inscripcion from './components/Inscripcion.jsx'
 import Footer from './components/Footer.jsx'
-import ChatWidget from './components/ChatWidget.jsx'
 import useScrollReveal from './hooks/useScrollReveal.js'
 
 export default function App() {
@@ -24,7 +23,6 @@ export default function App() {
         <Inscripcion />
       </main>
       <Footer />
-      <ChatWidget />
     </LangProvider>
   )
 }
