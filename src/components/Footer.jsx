@@ -12,7 +12,7 @@ export default function Footer() {
       </a>
       <div className="ft-info">
         Av. Escandinavia 72 · Gran Alacant · Alicante<br />
-        brisagym.alc@gmail.com · {t.footer.apertura}
+        contacto@brisagym.es · {t.footer.apertura}
       </div>
       <div className="ft-social">
         <a href="https://www.instagram.com/brisagym/">Instagram</a>
