@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLang } from '../context/LangContext'
 import './Nav.css'
 
 function LogoBlock({ size = 'nav' }) {
@@ -14,6 +15,7 @@ export { LogoBlock }
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
+  const { lang, toggle, t } = useLang()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -23,14 +25,15 @@ export default function Nav() {
 
   return (
     <nav id="nav" className={scrolled ? 'scrolled' : ''}>
-      <LogoBlock size="nav" />
       <ul className="nav-links">
-        <li><a href="#sobre">Nosotros</a></li>
-        <li><a href="#features">Servicios</a></li>
-        <li><a href="#equipo">Equipamiento</a></li>
-        <li><a href="#ubicacion">Ubicación</a></li>
-        <li><a href="#inscripcion">Pre-inscripción</a></li>
+        <li><a href="#sobre">{t.nav.nosotros}</a></li>
+        <li><a href="#features">{t.nav.servicios}</a></li>
+        <li><a href="#ubicacion">{t.nav.ubicacion}</a></li>
+        <li><a href="#inscripcion">{t.nav.inscripcion}</a></li>
       </ul>
+      <button className="lang-btn" onClick={toggle}>
+        {lang === 'es' ? 'EN' : 'ES'}
+      </button>
     </nav>
   )
 }

@@ -1,7 +1,10 @@
 import sobreImg from '../assets/sobre-img.png'
+import { useLang } from '../context/LangContext'
 import './Sobre.css'
 
 export default function Sobre() {
+  const { t } = useLang()
+
   return (
     <section id="sobre">
       <div className="sobre-visual-wrap reveal">
@@ -10,21 +13,19 @@ export default function Sobre() {
         </div>
         <div className="sobre-quote">
           <p>
-            Si esta imagen de bienestar conecta contigo,<br />
-            <strong>ya tenemos las inscripciones abiertas.</strong>
+            {t.sobre.quote}<br />
+            <strong>{t.sobre.quoteStrong}</strong>
           </p>
         </div>
       </div>
 
       <div>
-        <p className="sec-lbl reveal">Sobre nosotros</p>
+        <p className="sec-lbl reveal">{t.sobre.lbl}</p>
         <h2 className="sec-title reveal">
-          Un gimnasio pensado<br /><em>para las personas</em>
+          {t.sobre.title1}<br /><em>{t.sobre.titleEm}</em>
         </h2>
         <div className="divider-line reveal" />
-        <p className="body-t reveal">
-          Brisa Gym nace en el corazón de Gran Alacant con una visión clara: crear un espacio donde el entrenamiento sea accesible, efectivo y placentero para todos.
-        </p>
+        <p className="body-t reveal">{t.sobre.body}</p>
       </div>
     </section>
   )

@@ -5,10 +5,10 @@
 }
 .sobre-visual-wrap { display: flex; flex-direction: column; gap: 0; }
 .sobre-visual {
-  aspect-ratio: 3/4; position: relative; overflow: hidden;
+  position: relative;
   background: var(--bg-alt);
 }
-.sobre-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.sobre-img { width: 100%; height: auto; display: block; }
 .sobre-quote {
   background: #EAE0D3; padding: 2rem; border-top: 2px solid var(--taupe);
   position: relative;
@@ -27,5 +27,4 @@
 
 @media (max-width: 900px) {
   #sobre { grid-template-columns: 1fr; padding: 5rem 2rem; }
-  .sobre-visual { display: none; }
 }

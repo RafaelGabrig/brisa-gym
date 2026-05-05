@@ -1,7 +1,10 @@
 import brisaLogo from '../assets/brisa-logo.jpeg'
+import { useLang } from '../context/LangContext'
 import './Footer.css'
 
 export default function Footer() {
+  const { t } = useLang()
+
   return (
     <footer>
       <a href="#hero" className="ft-logo-link">
@@ -9,11 +12,11 @@ export default function Footer() {
       </a>
       <div className="ft-info">
         Av. Escandinavia 72 · Gran Alacant · Alicante<br />
-        brisagym.alc@gmail.com · Apertura Julio 2026
+        brisagym.alc@gmail.com · {t.footer.apertura}
       </div>
       <div className="ft-social">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
+        <a href="https://www.instagram.com/brisagym/">Instagram</a>
+        <a href="https://www.facebook.com/share/1CGdWhDTe9/">Facebook</a>
       </div>
     </footer>
   )
