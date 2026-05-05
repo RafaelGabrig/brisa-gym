@@ -162,11 +162,19 @@ img.f-bg-media {
 }
 
 @media (max-width: 900px) {
-  .f-content { margin-left: 0; padding: 2rem 2rem 6rem; max-width: 100%; }
+  .f-content { margin-left: 0; padding: 2rem 2rem 7rem; max-width: 100%; }
   .f-top-label { left: 2rem; top: 2rem; }
-  .f-prev { left: 1rem; }
-  .f-next { right: 1rem; }
-  .f-arrow { width: 42px; height: 42px; font-size: 1rem; }
+
+  .f-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+    top: auto;
+    bottom: 2rem;
+    transform: none;
+  }
+  .f-prev { left: 2rem; }
+  .f-next { right: 2rem; }
 
   img.f-bg-media {
     inset: 0;
