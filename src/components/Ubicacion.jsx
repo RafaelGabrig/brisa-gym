@@ -32,7 +32,7 @@ export default function Ubicacion() {
           <div className="addr-icon">✉️</div>
           <div className="addr-text">
             <strong>{t.ubicacion.contactLabel}</strong>
-            <p>brisagym.alc@gmail.com</p>
+            <p>contacto@brisagym.es</p>
           </div>
         </div>
       </div>
