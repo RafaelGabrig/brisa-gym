@@ -4,11 +4,11 @@
   align-items: center;
   padding: 0 80px 80px;
   position: relative; overflow: hidden;
-  background: #6e1e38;
+  background: #7b2240;
 }
 #hero::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 90% 80% at 30% 50%, #7e2442 0%, #6e1e38 45%, #561630 75%, #3d0f22 100%);
+  background: radial-gradient(ellipse 80% 80% at 40% 50%, #8c2848 0%, #7b2240 60%, #621a34 100%);
   pointer-events: none;
 }
 

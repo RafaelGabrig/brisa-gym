@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import brisaLogo from '../assets/logo-svg.svg'
+import brisaLogo from '../assets/logo-fundo-transparente.svg'
 import { useLang } from '../context/LangContext'
 import './Hero.css'
 
