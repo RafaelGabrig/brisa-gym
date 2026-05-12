@@ -29,7 +29,7 @@ const t = {
         { name: 'Circuito eGym', desc: 'Smart Strength con máquinas inteligentes. IA adaptativa, seguimiento de progresos y ajuste automático de resistencia en cada sesión.' },
         { name: 'Musculación', desc: 'Equipamiento completo: mancuernas, barras, máquinas de cable, cintas de correr y bicicletas. Todo en un solo espacio.' },
         { name: 'Clases Dirigidas', desc: 'Clases de GAP, Spinning, BrisaPump, jiu-jitsu brasileño, entrenamiento funcional, Zumba... Horarios flexibles pensados para tu día a día.' },
-        { name: 'Recovery & Wellness', desc: 'Sauna con infrarrojos, bañera de hielo e hidromasaje.' },
+        { name: 'Recovery & Wellness', desc: 'Sauna con infrarrojos, bañera de hielo y hidromasaje.' },
         { name: 'Estética', desc: 'Cabinas de estética integradas para cuidar tu cuerpo por dentro y por fuera.' },
         { name: 'Cafetería', desc: 'Batidos de proteínas, açaí bowls, snacks saludables y bebidas. El complemento perfecto para tu entreno.' },
       ],
