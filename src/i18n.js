@@ -10,7 +10,7 @@ const t = {
       tagline1: 'Donde el bienestar',
       tagline2: 'se convierte en',
       taglineEm: 'estilo de vida',
-      sub: 'Gran Alacant · Alicante · Apertura Julio 2026',
+      sub: 'Gran Alacant · Alicante · Apertura Agosto 2026',
       dias: 'Días', horas: 'Horas', minutos: 'Minutos',
       cta: 'Reserva tu plaza',
       scroll: 'Descubre más',
@@ -42,7 +42,7 @@ const t = {
       dir1: 'Av. Escandinavia, 72',
       dir2: 'Gran Alacant, Alicante, España',
       apertLabel: 'Apertura prevista',
-      apert: 'Julio 2026',
+      apert: 'Agosto 2026',
       contactLabel: 'Contacto',
     },
     inscripcion: {
@@ -61,7 +61,7 @@ const t = {
       note: '✦ Tus datos no serán compartidos con terceros.',
     },
     footer: {
-      apertura: 'Apertura Julio 2026',
+      apertura: 'Apertura Agosto 2026',
     },
   },
   en: {
