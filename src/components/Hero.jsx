@@ -25,7 +25,7 @@ function useCountdown(target) {
 }
 
 export default function Hero() {
-  const { d, h, m } = useCountdown('2026-07-01T09:00:00')
+  const { d, h, m } = useCountdown('2026-08-01T09:00:00')
   const { t } = useLang()
 
   return (

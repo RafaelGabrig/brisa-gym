@@ -10,7 +10,7 @@ const t = {
       tagline1: 'Donde el bienestar',
       tagline2: 'se convierte en',
       taglineEm: 'estilo de vida',
-      sub: 'Gran Alacant · Alicante · Apertura 1 de agosto de 2026',
+      sub: 'Gran Alacant · Alicante · Apertura Agosto 2026',
       dias: 'Días', horas: 'Horas', minutos: 'Minutos',
       cta: 'Reserva tu plaza',
       scroll: 'Descubre más',
@@ -42,7 +42,7 @@ const t = {
       dir1: 'Av. Escandinavia, 72',
       dir2: 'Gran Alacant, Alicante, España',
       apertLabel: 'Apertura prevista',
-      apert: '1 de agosto de 2026',
+      apert: 'Agosto 2026',
       contactLabel: 'Contacto',
     },
     inscripcion: {
@@ -61,7 +61,7 @@ const t = {
       note: '✦ Tus datos no serán compartidos con terceros.',
     },
     footer: {
-      apertura: 'Apertura 1 de agosto de 2026',
+      apertura: 'Apertura Agosto 2026',
     },
   },
   en: {
@@ -75,7 +75,7 @@ const t = {
       tagline1: 'Where wellness',
       tagline2: 'becomes a',
       taglineEm: 'lifestyle',
-      sub: 'Gran Alacant · Alicante · Opening August 1, 2026',
+      sub: 'Gran Alacant · Alicante · Opening August 2026',
       dias: 'Days', horas: 'Hours', minutos: 'Minutes',
       cta: 'Reserve your spot',
       scroll: 'Discover more',
@@ -107,7 +107,7 @@ const t = {
       dir1: 'Av. Escandinavia, 72',
       dir2: 'Gran Alacant, Alicante, Spain',
       apertLabel: 'Expected opening',
-      apert: 'August 1, 2026',
+      apert: 'August 2026',
       contactLabel: 'Contact',
     },
     inscripcion: {
@@ -126,7 +126,7 @@ const t = {
       note: '✦ Your data will not be shared with third parties.',
     },
     footer: {
-      apertura: 'Opening August 1, 2026',
+      apertura: 'Opening August 2026',
     },
   },
 }
