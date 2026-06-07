@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useLang } from '../context/LangContext'
 import './Inscripcion.css'
 
-const FORMSPREE_URL = 'https://formspree.io/f/xvzlanvy'
+const WEB3FORMS_KEY = 'ecc2ab41-eae0-4a1e-ae7a-249420e365dc'
 
 export default function Inscripcion() {
   const [submitted, setSubmitted] = useState(false)
@@ -13,13 +13,20 @@ export default function Inscripcion() {
     e.preventDefault()
     setSending(true)
     try {
-      await fetch(FORMSPREE_URL, {
+      const formData = new FormData(e.target)
+      formData.append('access_key', WEB3FORMS_KEY)
+      formData.append('subject', 'Nueva pre-inscripción - Brisa Gym')
+      formData.append('from_name', 'Brisa Gym Web')
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: new FormData(e.target),
-        headers: { Accept: 'application/json' },
+        body: formData,
       })
-    } catch (_) {}
-    setSubmitted(true)
+      const data = await res.json()
+      if (data.success) setSubmitted(true)
+      else setSending(false)
+    } catch (_) {
+      setSending(false)
+    }
   }
 
   return (
@@ -32,7 +39,7 @@ export default function Inscripcion() {
 
       <div className="form-wrap">
         {!submitted ? (
-          <form onSubmit={handleSubmit} action={FORMSPREE_URL} method="POST">
+          <form onSubmit={handleSubmit}>
             <div className="fg reveal">
               <label htmlFor="nombre">{t.inscripcion.nombre}</label>
               <input type="text" id="nombre" name="nombre" placeholder={t.inscripcion.nombrePh} required />
