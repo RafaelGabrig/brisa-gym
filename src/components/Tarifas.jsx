@@ -134,8 +134,8 @@ export default function Tarifas() {
       <p className="tarifas-sub reveal">{t.tarifas.sub}</p>
 
       <div className="tarifas-grid">
-        {plans.map((plan) => (
-          <div key={plan.id} className={`tarifa-card reveal${plan.badge ? ' tarifa-featured' : ''}`}>
+        {plans.map((plan, i) => (
+          <div key={i} className={`tarifa-card reveal${plan.badge ? ' tarifa-featured' : ''}`}>
             {plan.badge && <div className="tarifa-badge">{plan.badge}</div>}
 
             <div className="tarifa-header">
