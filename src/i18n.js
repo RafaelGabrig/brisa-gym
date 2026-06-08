@@ -60,6 +60,15 @@ const t = {
       successBody: 'Te contactaremos próximos a la apertura.',
       note: '✦ Tus datos no serán compartidos con terceros.',
     },
+    tarifas: {
+      lbl: 'Tarifas socio fundador',
+      title1: 'Elige tu',
+      titleEm: 'plan',
+      sub: 'Precios especiales de lanzamiento · Agosto 2026',
+      acompLabel: 'Acompañamiento',
+      cta: 'Reservar plaza',
+      tagline: 'Más que un gimnasio. Un espacio de entrenamiento, recuperación y bienestar integral.',
+    },
     footer: {
       apertura: 'Apertura Agosto 2026',
     },
@@ -124,6 +133,15 @@ const t = {
       successTitle: 'Thanks for joining!',
       successBody: 'We\'ll contact you close to opening.',
       note: '✦ Your data will not be shared with third parties.',
+    },
+    tarifas: {
+      lbl: 'Founding member plans',
+      title1: 'Choose your',
+      titleEm: 'plan',
+      sub: 'Special launch pricing · August 2026',
+      acompLabel: 'Coaching included',
+      cta: 'Reserve spot',
+      tagline: 'More than a gym. A space for training, recovery and total wellbeing.',
     },
     footer: {
       apertura: 'Opening August 2026',

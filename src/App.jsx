@@ -5,6 +5,7 @@ import Hero from './components/Hero.jsx'
 import Sobre from './components/Sobre.jsx'
 import Features from './components/Features.jsx'
 import Ubicacion from './components/Ubicacion.jsx'
+import Tarifas from './components/Tarifas.jsx'
 import Inscripcion from './components/Inscripcion.jsx'
 import Footer from './components/Footer.jsx'
 import useScrollReveal from './hooks/useScrollReveal.js'
@@ -20,6 +21,7 @@ export default function App() {
         <Sobre />
         <Features />
         <Ubicacion />
+        <Tarifas />
         <Inscripcion />
       </main>
       <Footer />
