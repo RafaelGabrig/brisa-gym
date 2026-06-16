@@ -20,6 +20,11 @@ const PLANS = {
 
 const PLAN_KEYS = ['standard', 'premium', 'elite']
 
+const W3F_KEY      = import.meta.env.VITE_WEB3FORMS_KEY      ?? 'ecc2ab41-eae0-4a1e-ae7a-249420e365dc'
+const EJS_SERVICE  = import.meta.env.VITE_EMAILJS_SERVICE_ID  ?? 'service_w6zpj3o'
+const EJS_TEMPLATE = import.meta.env.VITE_EMAILJS_TEMPLATE_ID ?? 'template_vjepw7c'
+const EJS_KEY      = import.meta.env.VITE_EMAILJS_PUBLIC_KEY  ?? '96Ly57RbepEzePEJy'
+
 export default function Inscripcion() {
   const { lang, t } = useLang()
   const ti = t.inscripcion
@@ -50,7 +55,7 @@ export default function Inscripcion() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          access_key: W3F_KEY,
           name: form.nombre,
           phone: form.telefono,
           email: form.email,
@@ -63,15 +68,15 @@ export default function Inscripcion() {
 
       // Email de confirmação — best-effort, não bloqueia o sucesso
       emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        EJS_SERVICE,
+        EJS_TEMPLATE,
         {
           to_name: form.nombre,
           to_email: form.email,
           plan_name: planLocale.name,
           plan_price: planLocale.price,
         },
-        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY },
+        { publicKey: EJS_KEY },
       ).catch(err => console.error('EmailJS error:', err))
 
       setStatus('ok')
