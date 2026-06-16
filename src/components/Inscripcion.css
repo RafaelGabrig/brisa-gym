@@ -103,6 +103,23 @@
   font-weight: 300;
 }
 
+.field-err {
+  display: block;
+  margin-top: .4rem;
+  font-size: .62rem;
+  color: #d96060;
+  font-weight: 300;
+  letter-spacing: .03em;
+}
+
+.fg input.input-err {
+  border-bottom-color: #d96060;
+}
+
+.plan-selector-err .plan-option {
+  border-color: rgba(217, 96, 96, .4);
+}
+
 @media (max-width: 900px) {
   #inscripcion { padding: 5rem 2rem; }
 }

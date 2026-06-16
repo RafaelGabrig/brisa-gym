@@ -31,6 +31,7 @@ export default function Inscripcion() {
 
   const [form, setForm] = useState({ nombre: '', telefono: '', email: '', plan: '' })
   const [status, setStatus] = useState('idle')
+  const [errors, setErrors] = useState({})
 
   useEffect(() => {
     const handler = e => setForm(f => ({ ...f, plan: e.detail }))
@@ -38,12 +39,27 @@ export default function Inscripcion() {
     return () => window.removeEventListener('brisa:selectPlan', handler)
   }, [])
 
-  const set = key => e => setForm(f => ({ ...f, [key]: e.target.value }))
+  const set = key => e => {
+    const val = e.target.value
+    setForm(f => ({ ...f, [key]: val }))
+    if (errors[key]) setErrors(prev => ({ ...prev, [key]: '' }))
+  }
+
+  function validate(f) {
+    const e = {}
+    if (!f.plan) e.plan = ti.errPlan
+    if (!f.nombre.trim()) e.nombre = ti.errRequired
+    if (!f.telefono.trim()) e.telefono = ti.errRequired
+    if (!f.email.trim()) e.email = ti.errRequired
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = ti.errEmail
+    return e
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
-    if (!form.plan) {
-      alert(ti.selectPlanAlert)
+    const errs = validate(form)
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs)
       return
     }
     setStatus('sending')
@@ -106,7 +122,7 @@ export default function Inscripcion() {
           <form onSubmit={handleSubmit} noValidate>
             <div className="fg">
               <label>{ti.plan}</label>
-              <div className="plan-selector">
+              <div className={`plan-selector${errors.plan ? ' plan-selector-err' : ''}`}>
                 {PLAN_KEYS.map(pid => {
                   const p = PLANS[pid][lang]
                   return (
@@ -119,7 +135,10 @@ export default function Inscripcion() {
                         name="plan"
                         value={pid}
                         checked={form.plan === pid}
-                        onChange={() => setForm(f => ({ ...f, plan: pid }))}
+                        onChange={() => {
+                          setForm(f => ({ ...f, plan: pid }))
+                          if (errors.plan) setErrors(prev => ({ ...prev, plan: '' }))
+                        }}
                       />
                       <span className="po-name">{p.name}</span>
                       <span className="po-price">{p.price}</span>
@@ -127,6 +146,7 @@ export default function Inscripcion() {
                   )
                 })}
               </div>
+              {errors.plan && <span className="field-err">{errors.plan}</span>}
             </div>
 
             <div className="fg">
@@ -136,8 +156,9 @@ export default function Inscripcion() {
                 placeholder={ti.nombrePh}
                 value={form.nombre}
                 onChange={set('nombre')}
-                required
+                className={errors.nombre ? 'input-err' : ''}
               />
+              {errors.nombre && <span className="field-err">{errors.nombre}</span>}
             </div>
 
             <div className="fg">
@@ -147,7 +168,9 @@ export default function Inscripcion() {
                 placeholder={ti.telefonoPh}
                 value={form.telefono}
                 onChange={set('telefono')}
+                className={errors.telefono ? 'input-err' : ''}
               />
+              {errors.telefono && <span className="field-err">{errors.telefono}</span>}
             </div>
 
             <div className="fg">
@@ -157,8 +180,9 @@ export default function Inscripcion() {
                 placeholder={ti.emailPh}
                 value={form.email}
                 onChange={set('email')}
-                required
+                className={errors.email ? 'input-err' : ''}
               />
+              {errors.email && <span className="field-err">{errors.email}</span>}
             </div>
 
             {status === 'error' && (
