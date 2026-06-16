@@ -1,68 +1,170 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
 import { useLang } from '../context/LangContext'
 import './Inscripcion.css'
 
-const WEB3FORMS_KEY = 'ecc2ab41-eae0-4a1e-ae7a-249420e365dc'
+const PLANS = {
+  standard: {
+    es: { name: 'Estándar', price: '39,90€/mes' },
+    en: { name: 'Standard', price: '39.90€/mo' },
+  },
+  premium: {
+    es: { name: 'Premium', price: '49,90€/mes' },
+    en: { name: 'Premium', price: '49.90€/mo' },
+  },
+  elite: {
+    es: { name: 'Elite', price: '59,90€/mes' },
+    en: { name: 'Elite', price: '59.90€/mo' },
+  },
+}
+
+const PLAN_KEYS = ['standard', 'premium', 'elite']
 
 export default function Inscripcion() {
-  const [submitted, setSubmitted] = useState(false)
-  const [sending, setSending] = useState(false)
-  const { t } = useLang()
+  const { lang, t } = useLang()
+  const ti = t.inscripcion
+
+  const [form, setForm] = useState({ nombre: '', telefono: '', email: '', plan: '' })
+  const [status, setStatus] = useState('idle')
+
+  useEffect(() => {
+    const handler = e => setForm(f => ({ ...f, plan: e.detail }))
+    window.addEventListener('brisa:selectPlan', handler)
+    return () => window.removeEventListener('brisa:selectPlan', handler)
+  }, [])
+
+  const set = key => e => setForm(f => ({ ...f, [key]: e.target.value }))
 
   async function handleSubmit(e) {
     e.preventDefault()
-    setSending(true)
+    if (!form.plan) {
+      alert(ti.selectPlanAlert)
+      return
+    }
+    setStatus('sending')
+
+    const planLocale = PLANS[form.plan][lang]
+
     try {
-      const formData = new FormData(e.target)
-      formData.append('access_key', WEB3FORMS_KEY)
-      formData.append('subject', 'Nueva pre-inscripción - Brisa Gym')
-      formData.append('from_name', 'Brisa Gym Web')
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          name: form.nombre,
+          phone: form.telefono,
+          email: form.email,
+          plan: planLocale.name,
+          subject: `Pre-inscripción: ${form.nombre} — ${planLocale.name}`,
+        }),
       })
       const data = await res.json()
-      if (data.success) setSubmitted(true)
-      else setSending(false)
-    } catch (_) {
-      setSending(false)
+      if (!data.success) throw new Error('web3forms')
+
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          to_name: form.nombre,
+          to_email: form.email,
+          plan_name: planLocale.name,
+          plan_price: planLocale.price,
+        },
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY },
+      )
+
+      setStatus('ok')
+    } catch {
+      setStatus('error')
     }
   }
 
   return (
     <section id="inscripcion">
-      <p className="sec-lbl reveal">{t.inscripcion.lbl}</p>
-      <h2 className="sec-title reveal">{t.inscripcion.title} <em>{t.inscripcion.titleEm}</em></h2>
+      <p className="sec-lbl reveal">{ti.lbl}</p>
+      <h2 className="sec-title reveal">
+        {ti.title} <em>{ti.titleEm}</em>
+      </h2>
       <p className="body-t reveal">
-        {t.inscripcion.body1}<br />{t.inscripcion.body2}
+        {ti.body1}<br />{ti.body2}
       </p>
 
       <div className="form-wrap">
-        {!submitted ? (
-          <form onSubmit={handleSubmit}>
-            <div className="fg reveal">
-              <label htmlFor="nombre">{t.inscripcion.nombre}</label>
-              <input type="text" id="nombre" name="nombre" placeholder={t.inscripcion.nombrePh} required />
-            </div>
-            <div className="fg reveal">
-              <label htmlFor="telefono">{t.inscripcion.telefono}</label>
-              <input type="tel" id="telefono" name="telefono" placeholder={t.inscripcion.telefonoPh} required />
-            </div>
-            <div className="fg reveal">
-              <label htmlFor="email">{t.inscripcion.email}</label>
-              <input type="email" id="email" name="email" placeholder={t.inscripcion.emailPh} required />
-            </div>
-            <button type="submit" className="form-btn reveal" disabled={sending}>
-              {sending ? t.inscripcion.sending : t.inscripcion.btn}
-            </button>
-          </form>
-        ) : (
+        {status === 'ok' ? (
           <div className="form-ok">
-            <p>{t.inscripcion.successTitle}</p>
-            <small>{t.inscripcion.successBody}</small>
+            <p>{ti.successTitle}</p>
+            <small>{ti.successBody}</small>
           </div>
+        ) : (
+          <form onSubmit={handleSubmit} noValidate>
+            <div className="fg">
+              <label>{ti.plan}</label>
+              <div className="plan-selector">
+                {PLAN_KEYS.map(pid => {
+                  const p = PLANS[pid][lang]
+                  return (
+                    <label
+                      key={pid}
+                      className={`plan-option${form.plan === pid ? ' plan-selected' : ''}`}
+                    >
+                      <input
+                        type="radio"
+                        name="plan"
+                        value={pid}
+                        checked={form.plan === pid}
+                        onChange={() => setForm(f => ({ ...f, plan: pid }))}
+                      />
+                      <span className="po-name">{p.name}</span>
+                      <span className="po-price">{p.price}</span>
+                    </label>
+                  )
+                })}
+              </div>
+            </div>
+
+            <div className="fg">
+              <label>{ti.nombre}</label>
+              <input
+                type="text"
+                placeholder={ti.nombrePh}
+                value={form.nombre}
+                onChange={set('nombre')}
+                required
+              />
+            </div>
+
+            <div className="fg">
+              <label>{ti.telefono}</label>
+              <input
+                type="tel"
+                placeholder={ti.telefonoPh}
+                value={form.telefono}
+                onChange={set('telefono')}
+              />
+            </div>
+
+            <div className="fg">
+              <label>{ti.email}</label>
+              <input
+                type="email"
+                placeholder={ti.emailPh}
+                value={form.email}
+                onChange={set('email')}
+                required
+              />
+            </div>
+
+            {status === 'error' && (
+              <p className="form-err">{ti.errorMsg}</p>
+            )}
+
+            <button className="form-btn" disabled={status === 'sending'} type="submit">
+              {status === 'sending' ? ti.sending : ti.btn}
+            </button>
+
+            <p className="form-note">{ti.note}</p>
+          </form>
         )}
-        <p className="form-note reveal">{t.inscripcion.note}</p>
       </div>
     </section>
   )

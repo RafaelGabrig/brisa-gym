@@ -44,10 +44,32 @@
   font-size: .73rem; font-weight: 300; letter-spacing: .28em;
   text-transform: uppercase; color: rgba(245,237,227,.65); margin-bottom: 2.2rem;
 }
-.cd-row { display: flex; gap: 1.5rem; justify-content: flex-start; margin-bottom: 2.2rem; align-items: flex-start; }
-.cd-sep { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: rgba(245,237,227,.35); line-height: 1.2; }
-.cd-num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; color: #f5ede3; display: block; line-height: 1; }
-.cd-lbl { font-size: .54rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(245,237,227,.6); }
+.muy-pronto {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  letter-spacing: .18em;
+  margin-bottom: 2.2rem;
+  background: linear-gradient(
+    90deg,
+    rgba(245,237,227,.38) 0%,
+    rgba(245,237,227,.38) 30%,
+    rgba(245,237,227,.92) 50%,
+    rgba(245,237,227,.38) 70%,
+    rgba(245,237,227,.38) 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
 .hero-cta {
   display: inline-block; padding: .88rem 2.8rem;
   background: var(--maroon); border: 1.5px solid var(--maroon); color: var(--cream);
@@ -81,5 +103,5 @@
   .hero-logo-img { width: min(260px, 75%); }
   .hero-content { padding-left: 0; border-left: none; text-align: center; padding-bottom: 2rem; }
   .hero-cta { margin-bottom: 1rem; }
-  .cd-row { justify-content: center; }
+  .muy-pronto { text-align: center; }
 }

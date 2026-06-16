@@ -188,6 +188,7 @@
 /* ── CTA ── */
 .tarifa-cta {
   display: block;
+  font-family: inherit;
   width: 100%;
   padding: .85rem 1rem;
   text-align: center;

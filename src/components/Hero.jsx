@@ -1,31 +1,8 @@
-import { useEffect, useState } from 'react'
 import brisaLogo from '../assets/logo-fundo-transparente.svg'
 import { useLang } from '../context/LangContext'
 import './Hero.css'
 
-function useCountdown(target) {
-  const [time, setTime] = useState({ d: '00', h: '00', m: '00' })
-
-  useEffect(() => {
-    function update() {
-      const diff = new Date(target) - new Date()
-      if (diff <= 0) return
-      setTime({
-        d: String(Math.floor(diff / 864e5)).padStart(2, '0'),
-        h: String(Math.floor(diff % 864e5 / 36e5)).padStart(2, '0'),
-        m: String(Math.floor(diff % 36e5 / 6e4)).padStart(2, '0'),
-      })
-    }
-    update()
-    const id = setInterval(update, 60000)
-    return () => clearInterval(id)
-  }, [target])
-
-  return time
-}
-
 export default function Hero() {
-  const { d, h, m } = useCountdown('2026-08-01T09:00:00')
   const { t } = useLang()
 
   return (
@@ -43,22 +20,7 @@ export default function Hero() {
         </h1>
         <p className="hero-sub">{t.hero.sub}</p>
 
-        <div className="cd-row">
-          <div>
-            <span className="cd-num">{d}</span>
-            <div className="cd-lbl">{t.hero.dias}</div>
-          </div>
-          <div className="cd-sep">:</div>
-          <div>
-            <span className="cd-num">{h}</span>
-            <div className="cd-lbl">{t.hero.horas}</div>
-          </div>
-          <div className="cd-sep">:</div>
-          <div>
-            <span className="cd-num">{m}</span>
-            <div className="cd-lbl">{t.hero.minutos}</div>
-          </div>
-        </div>
+        <p className="muy-pronto">{t.hero.muyPronto}</p>
 
         <a href="#inscripcion" className="hero-cta">{t.hero.cta}</a>
       </div>

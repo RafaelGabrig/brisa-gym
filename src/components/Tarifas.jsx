@@ -162,7 +162,17 @@ export default function Tarifas() {
               </ul>
             </div>
 
-            <a href="#inscripcion" className="tarifa-cta">{t.tarifas.cta}</a>
+            <button
+              type="button"
+              className="tarifa-cta"
+              onClick={() => {
+                const stableId = plan.id === 'estandar' ? 'standard' : plan.id
+                window.dispatchEvent(new CustomEvent('brisa:selectPlan', { detail: stableId }))
+                document.getElementById('inscripcion').scrollIntoView({ behavior: 'smooth' })
+              }}
+            >
+              {t.tarifas.cta}
+            </button>
           </div>
         ))}
       </div>
