@@ -61,7 +61,8 @@ export default function Inscripcion() {
       const data = await res.json()
       if (!data.success) throw new Error('web3forms')
 
-      await emailjs.send(
+      // Email de confirmação — best-effort, não bloqueia o sucesso
+      emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
@@ -71,10 +72,11 @@ export default function Inscripcion() {
           plan_price: planLocale.price,
         },
         { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY },
-      )
+      ).catch(err => console.error('EmailJS error:', err))
 
       setStatus('ok')
-    } catch {
+    } catch (err) {
+      console.error('Submission error:', err)
       setStatus('error')
     }
   }
