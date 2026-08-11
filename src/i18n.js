@@ -76,7 +76,7 @@ const t = {
       tagline: 'Más que un gimnasio. Un espacio de entrenamiento, recuperación y bienestar integral.',
     },
     footer: {
-      apertura: 'Apertura Agosto 2026',
+      apertura: '¡Muy Pronto!',
     },
   },
   en: {
@@ -156,7 +156,7 @@ const t = {
       tagline: 'More than a gym. A space for training, recovery and total wellbeing.',
     },
     footer: {
-      apertura: 'Opening August 2026',
+      apertura: 'Coming Soon!',
     },
   },
 }
